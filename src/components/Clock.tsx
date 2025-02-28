@@ -33,18 +33,21 @@ export default function () {
                     <label id='break-label'>Break Length</label>
                     <div id='break-controls' className='flex gap-2'>
                         <button id='break-decrement' onClick={() => (Decrement("break"))} >DOWN</button>
-                        <output id='break-length' className='text-2xl'>{breakLength}</output>
+                        <output id="break-length" className='text-2xl'>{breakLength}</output>
                         <button id='break-increment' onClick={() => (Increment("break"))} >UP</button>
                     </div>
                 </fieldset>
                 <fieldset id='session-field'>
-                    <label id='break-label'>Session Length</label>
+                    <label id='session-label'>Session Length</label>
                     <div id='session-controls' className='flex gap-2'>
                         <button id='session-decrement' onClick={() => (Decrement("session"))} >DOWN</button>
                         <output id='session-length' className='text-2xl'>{sessionLength}</output>
                         <button id='session-increment' onClick={() => (Increment("session"))} >UP</button>
                     </div>
                 </fieldset>
+            </section>
+            <section id='timer-section'>
+                <h2 id='timer-label'></h2>
             </section>
         </div>
   )
