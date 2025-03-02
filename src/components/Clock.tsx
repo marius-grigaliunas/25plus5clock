@@ -2,26 +2,40 @@ import { useState } from 'react'
 
 export default function () {
 
-    const [breakLength, setBreakLength] = useState<number>(5)
-    const [sessionLength, setSessionLength] = useState<number>(25)
+    const [breakLengthInMinutes, setbreakLengthInMinutes] = useState<number>(5)
+    const [breakLenghtInSeconds, setBreakLenghtInSeconds] = useState<number>(breakLengthInMinutes*60)
 
+    const [sessionLengthInMinutes, setsessionLengthInMinutes] = useState<number>(25)
+    const [sessionLengthInSeconds, setSessionLengthInInSeconds] = useState<number>(sessionLengthInMinutes*60)
+    
+    const [isSession, setIsSession] = useState<boolean>(true)
+    const [isPaused, setIsPaused] = useState<boolean>(false)
+
+    
 
     const Decrement = (intervalName: string) => {
         if(intervalName === "break") {
-            setBreakLength(breakLength - 1)
+            setbreakLengthInMinutes(breakLengthInMinutes - 1)
         } else if (intervalName === "session") {
-            setSessionLength(sessionLength - 1)
+            setsessionLengthInMinutes(sessionLengthInMinutes - 1)
         }
 
     }
 
     const Increment = (intervalName: string) => {
         if(intervalName === "break") {
-            setBreakLength(breakLength + 1)
+            setbreakLengthInMinutes(breakLengthInMinutes + 1)
         } else if (intervalName === "session") {
-            setSessionLength(sessionLength + 1)
+            setsessionLengthInMinutes(sessionLengthInMinutes + 1)
         }
 
+    }
+
+    const formatTime = (timeInSeconds: number): string => {
+        const minutes = Math.floor(timeInSeconds / 60)
+        const remainingSeconds = timeInSeconds % 60
+
+        return `${minutes.toString().padStart(2, '0')} : ${remainingSeconds.toString().padStart(2, '0')}`
     }
 
 
@@ -33,7 +47,7 @@ export default function () {
                     <label id='break-label'>Break Length</label>
                     <div id='break-controls' className='flex gap-2'>
                         <button id='break-decrement' onClick={() => (Decrement("break"))} >DOWN</button>
-                        <output id="break-length" className='text-2xl'>{breakLength}</output>
+                        <output id="break-length" className='text-2xl'>{breakLengthInMinutes}</output>
                         <button id='break-increment' onClick={() => (Increment("break"))} >UP</button>
                     </div>
                 </fieldset>
@@ -41,13 +55,16 @@ export default function () {
                     <label id='session-label'>Session Length</label>
                     <div id='session-controls' className='flex gap-2'>
                         <button id='session-decrement' onClick={() => (Decrement("session"))} >DOWN</button>
-                        <output id='session-length' className='text-2xl'>{sessionLength}</output>
+                        <output id='session-length' className='text-2xl'>{sessionLengthInMinutes}</output>
                         <button id='session-increment' onClick={() => (Increment("session"))} >UP</button>
                     </div>
                 </fieldset>
             </section>
-            <section id='timer-section'>
-                <h2 id='timer-label'></h2>
+            <section id='timer-section' className='my-20 border border-black w-100 h-52 flex justify-evenly items-center flex-col'>
+                <h2 id='timer-label' className='text-3xl'>{isSession ? "Session" : "Break"}</h2>
+                <h2 id='time-left' className='text-7xl'>
+                    {isSession ? `${formatTime(sessionLengthInSeconds)}` : `${(formatTime(breakLenghtInSeconds))}`}
+                </h2>
             </section>
         </div>
   )
