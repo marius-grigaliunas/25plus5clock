@@ -9,7 +9,7 @@ export default function () {
     const [sessionLengthInSeconds, setSessionLengthInInSeconds] = useState<number>(sessionLengthInMinutes*60)
     
     const [isSession, setIsSession] = useState<boolean>(true)
-    const [isPaused, setIsPaused] = useState<boolean>(false)
+    const [isPaused, setIsPaused] = useState<boolean>(true)
 
     
 
@@ -60,7 +60,11 @@ export default function () {
                     </div>
                 </fieldset>
             </section>
-            <section id='timer-section' className='my-20 border border-black w-100 h-52 flex justify-evenly items-center flex-col'>
+            <section id="timer-controls-section" className='my-10 text-2xl flex  gap-7'>
+                <button id='start_stop'>{isPaused ? "START" : "STOP"}</button>
+                <button id='reset'>RESET</button>
+            </section>
+            <section id='timer-section' className='my-5 border border-black w-100 h-52 flex justify-evenly items-center flex-col'>
                 <h2 id='timer-label' className='text-3xl'>{isSession ? "Session" : "Break"}</h2>
                 <h2 id='time-left' className='text-7xl'>
                     {isSession ? `${formatTime(sessionLengthInSeconds)}` : `${(formatTime(breakLenghtInSeconds))}`}
