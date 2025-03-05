@@ -74,7 +74,6 @@ export default function () {
 
         if(!isPaused) {
             intervalID = setInterval(() => {
-
                 if(isSession) {
                     setSessionLengthInSeconds((prevTime: number) => {
                         if(prevTime <= 0) {
@@ -98,7 +97,6 @@ export default function () {
                         return prevTime - 1
                     })
                 }
-
             }, 1000)
         }
 
