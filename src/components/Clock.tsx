@@ -37,7 +37,6 @@ export default function () {
             else if (isPaused && !isBreak && isSession)
                 adjustCurrentTime(amount*60)
 
-            //isPaused && adjustCurrentTime(amount * 60)
         }
     }
 
