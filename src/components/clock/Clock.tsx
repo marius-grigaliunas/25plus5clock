@@ -135,7 +135,7 @@ export default function () {
                     id='beep'
                     ref={audioRef}
                 >
-                    <source src='/public/beep.mp3' type='audio/mp3'/>
+                    <source src='beep.mp3' type='audio/mp3'/>
                     When the timer ends, you are supposed to hear a beep, but your browser does not support the audio element.
                 </audio>
             </section>
